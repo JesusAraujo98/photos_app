@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/css/styles.css' %}">
+
+</head>
+<body>
+    <div class="login">
+        <h2 class="active"> sign in </h2>
+      
+        <form method="POST" action= "{% url 'users:login' %}">
+          {% csrf_token %}
+      
+          <input type="text" class="text" name="username">
+           <span>username</span>
+      
+          <br>
+          
+          <br>
+      
+          <input type="password" class="text" name="password">
+          <span>password</span>
+          <br>
+      
+          
+          <button class="signin">
+            Sign In
+          </button>
+          
+          {% if error %}
+            <h1>{{error}}</h1>
+            
+          {% endif %}
+            
+      
+      
+          <hr>
+      
+         
+        </form>
+      
+      </div>
+          
+    
+</body>
+</html>
+
