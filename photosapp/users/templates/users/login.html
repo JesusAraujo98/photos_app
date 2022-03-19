@@ -1,53 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'users/css/styles.css' %}">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% load static%}
+  <link rel="stylesheet" href="{% static 'users/css/login-signup.css' %}" >
 
 </head>
-<body>
-    <div class="login">
-        <h2 class="active"> sign in </h2>
-      
-        <form method="POST" action= "{% url 'users:login' %}">
-          {% csrf_token %}
-      
-          <input type="text" class="text" name="username">
-           <span>username</span>
-      
-          <br>
-          
-          <br>
-      
-          <input type="password" class="text" name="password">
-          <span>password</span>
-          <br>
-      
-          
-          <button class="signin">
-            Sign In
-          </button>
-          
-          {% if error %}
-            <h1>{{error}}</h1>
-            
-          {% endif %}
-            
-      
-      
-          <hr>
-      
-         
-        </form>
-      
-      </div>
-          
-    
-</body>
-</html>
 
+<body>
+
+  <div class="container right-panel-active">
+
+
+    <!-- Sign Up -->
+    <div class="container__form container--signup">
+
+      <form method="POST" action = "{% url 'users:login' %}" class="form" >
+        {% csrf_token %}
+        
+        
+        <h2 class="form__title">Sign Up</h2>
+        <input type="hidden" name="form_type" value="formOne">
+        <input type="text" placeholder="User" class="input", name="username_signup" >
+        <input type="email" placeholder="Email" class="input", name="email_signup" >
+        <input type="password" placeholder="Password" class="input", name="password_signup" >
+        <button type="submit" class="btn", name="signup">Sign Up</button>
+        {% if error %}
+          <p>{{ error }}</p>
+        {% endif %}
+
+      </form>
+    </div>
+    
+    <!-- Sign In -->
+
+    <div class="container__form container--signin">
+      <form method="POST" action = "{% url 'users:login' %}" class="form">
+        {% csrf_token %}
+
+
+          <h2 class="form__title">Sign In</h2>
+          <input type="hidden" name="form_type" value="formTwo">
+          <input type="text" placeholder="Username" class="input", name="username" >
+          <input type="password" placeholder="Password" class="input", name="password" >
+          <a href="#" class="link">Forgot your password?</a>
+          <button type="submit" class="btn", name="login">Sign Up</button>
+
+          {% if error %}
+            <p>{{ error }}</p>
+          {% endif %}
+        
+      </form>
+
+    </div>
+
+
+    <!-- Overlay -->
+    <div class="container__overlay">
+      <div class="overlay">
+        <div class="overlay__panel overlay--left">
+          <button class="btn" id="signIn">Sign In</button>
+        </div>
+        <div class="overlay__panel overlay--right">
+          <button class="btn" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="{% static 'users/js/login-signup.js' %}"></script>
+</body>
+
+
+
+</html>
