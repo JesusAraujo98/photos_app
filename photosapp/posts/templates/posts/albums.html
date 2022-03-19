@@ -1,9 +1,12 @@
 {% extends './base.html' %}
 
 {% block container %}
-
+{% for album in album_list %}
 <h1>
-    El usuario es: {{ user_id }}
+    {{ album }}
+        
+    
 </h1>
+{% endfor %}
 
 {% endblock  %}

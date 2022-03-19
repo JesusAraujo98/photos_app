@@ -3,9 +3,18 @@ from .models import Album, Photos
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 
+
 # Create your views here.
 @login_required
-def album_views(request, user_name):
+def album_views(request):
     # album_list= Album.objects.filter()
-    return HttpResponse(f'este es el usuario {user_name}')
+    profile = request.user.profile
+    
+    album_list = Album.objects.filter(user=profile)
+
+
+    return render(request, 'posts/albums.html', {
+        'album_list': album_list,
+    })
+
 

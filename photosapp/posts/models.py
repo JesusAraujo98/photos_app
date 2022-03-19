@@ -1,10 +1,12 @@
 from django.db import models
 
+from users.models import Profile
+
 # Create your models here.
 
 
 class Album(models.Model):
-    user = models.IntegerField()
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     album_name= models.CharField(max_length=100)
 
     created_at = models.DateTimeField()

@@ -13,9 +13,8 @@ def login_view(request):
 
         user = authenticate(request, username= u_name, password = u_password)
         if user:
-            user_id = user.id
             login(request, user)
-            return redirect(reverse('posts:album', args=(u_name,) ))
+            return redirect(reverse('posts:album', ))
         else:
             return render(request, 'users/login.html', {'error': 'invalid username and/or password'})
             
