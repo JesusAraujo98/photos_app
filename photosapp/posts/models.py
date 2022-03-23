@@ -7,9 +7,12 @@ from users.models import Profile
 
 class Album(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    album_client = models.CharField(max_length=200 , blank=True)
     album_name= models.CharField(max_length=100)
-
-    created_at = models.DateTimeField()
+    is_active=models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    cover_photo = models.ImageField(blank=True)
+    
 
 
 

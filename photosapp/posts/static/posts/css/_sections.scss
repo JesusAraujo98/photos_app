@@ -1,0 +1,209 @@
+/*--------------------------------------------------------------
+# Sections
+--------------------------------------------------------------*/
+
+/* Sections Common
+--------------------------------*/
+.section-title {
+  font-size: 32px;
+  color: #111;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+}
+
+.section-description {
+  text-align: justify;
+  margin-bottom: 80px;
+}
+
+.section-title-divider {
+  width: 50px;
+  height: 3px;
+  background: $accent-color;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+/* Get Started Section
+--------------------------------*/
+#about {
+  background: #fff;
+  padding: 80px 0;
+  
+  .about-container {
+    background: url(../img/about-img.jpg) left top no-repeat;
+  }
+  
+  .about-content {
+    background: #fff;
+  }
+  
+  .about-title {
+    color: #333;
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  .about-text {
+    line-height: 26px;
+    font-size: 50px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+  }
+
+  p {
+    padding: 0 0 10px 50px;
+    line-height: 24px;
+    size: 50px;
+  }
+
+}
+
+/* Services Section
+--------------------------------*/
+#services {
+  background: linear-gradient(rgba(255, 255 ,255 , .9), rgba(255, 255 ,255 , .9)), url("../img/services-bg.jpg") fixed center center;
+  background-size: cover;
+  padding: 80px 0 60px 0;
+  
+  .service-item {
+    margin-bottom: 20px;
+  }
+
+  .service-icon {
+    float: left;
+    background: $accent-color;
+    padding: 16px;
+    border-radius: 50%;
+    transition: 0.5s;
+    border: 1px solid $accent-color;
+    
+    i {
+      color: #fff;
+      font-size: 24px;
+    }
+
+  }
+  
+  .service-item:hover .service-icon {
+    background: #fff;
+    i {
+      color: $accent-color;
+    }
+
+  }
+
+  .service-title {
+    margin-left: 80px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    a {
+      color: #111;
+    }
+
+  }
+  
+  .service-description {
+    margin-left: 80px;
+    line-height: 24px;
+  }
+  
+}
+
+
+
+
+
+
+/* Team Section
+--------------------------------*/
+#team {
+  background: #fff;
+  padding: 80px 0 60px 0;
+  
+  .member {
+    text-align: center;
+    margin-bottom: 20px;
+    .pic {
+      margin-bottom: 15px;
+      overflow: hidden;
+      height: 260px;
+      
+      img {
+        max-width: 100%;
+      }
+
+    }
+    
+    h4 {
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    
+    span {
+      font-style: italic;
+      display: block;
+      font-size: 13px;
+    }
+    
+    .social {
+      margin-top: 15px;
+      a {
+        color: lighten($text-color, 30%);
+        &:hover {
+          color: $accent-color;
+        }
+
+      }
+      
+      i {
+        font-size: 18px;
+        margin: 0 2px;
+      }
+
+    }
+
+  }
+
+}
+
+/* Contact Section
+--------------------------------*/
+#contact {
+  background: #fff;
+  padding: 80px 0;
+  
+  .contact-container {
+    background: url(../img/about-img.jpg) left top no-repeat;
+  }
+  
+  .contact-content {
+    background: #fff;
+  }
+  
+  .contact-title {
+    color: #333;
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  .contact-text {
+    line-height: 26px;
+    font-size: 50px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+  }
+
+  p {
+    padding: 0 0 10px 50px;
+    line-height: 24px;
+    size: 50px;
+  }
+
+}

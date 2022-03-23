@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'photosapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dbphotosapp' ,
+        'USER': 'araujo98',
+        'PASSWORD': 'pato1234',
+        'HOST': 'db4free.net',
+        'PORT': '3306',
     }
 }
 
