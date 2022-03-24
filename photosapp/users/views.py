@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
 from users.forms import ProfileForm
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def login_view(request):
     """Login view"""
@@ -54,6 +56,8 @@ def login_view(request):
 
     return render(request, 'users/login.html')
 
+
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('users:login')
