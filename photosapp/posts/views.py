@@ -21,9 +21,9 @@ def album_views(request, u_name):
     }) 
 
 
-def add_album(request):
-    if request.method == 'POST':
-        data = request.POST
-        images = request.POST.get('images')
+# def add_album(request):
+#     if request.method == 'POST':
+#         data = request.POST
+#         images = request.POST.get('images')
 
-        if 
+#         if 
