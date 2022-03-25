@@ -1,4 +1,6 @@
 from distutils.command.upload import upload
+from secrets import choice
+from turtle import back
 from django.db import models
 
 from users.models import Profile
@@ -22,6 +24,29 @@ class Album(models.Model):
         processors=[ResizeToFill(500, 300)],
         format = 'JPEG',
         options={'quality': 60})
+
+    """ Choices part """
+
+    # CHOICES_color = [
+    #     ('coffe', 'coffe'),
+    #     ('black', 'black'),
+    #     ('white', 'white'),
+    #     ('gray' (
+    #         ('gray', '25-75'),
+    #         ('gray', '50-50'),
+    #         ('gray', '75-20'),
+    #     ))
+    #     ]
+    # CHOICES_grid = [
+    #     ('mosaico','mosaico'),
+    #     ('cuadrados','cuadrados')
+    #     ('album','album')
+    # ]
+    
+    
+    # background_color = models.Choices(choices = CHOICES_color)
+    # grid = models.Choices(choices = CHOICES_grid)
+
     
 
 
@@ -29,6 +54,10 @@ class Album(models.Model):
 class Photos(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE )
     image = models.ImageField(blank=True, upload_to='posts/photos')
-    preview = models.ImageField(blank=True)
+    thumbnail_photo = ImageSpecField(
+        source='image', 
+        processors=[ResizeToFill(500, 700)],
+        format = 'JPEG',
+        options={'quality': 60})
     
 

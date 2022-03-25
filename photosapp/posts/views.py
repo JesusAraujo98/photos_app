@@ -46,12 +46,14 @@ def add_album_view(request):
         })
 
 
+def edit_album_view(request, album_name ):
 
- # user= request.user.profile
-        # album= Album()
-        # album.album_name = request.POST['album_name']
-        # album.album_client = request.POST['client_name']
-        # album.cover_photo = request.POST['picture']
-        # album.user = user
-        # # album.thumbnail_image = request.POST['']
-        # album.save()
+    if request.method == 'POST':
+        user = request.user
+        
+        
+
+
+    return render(request, 'posts/edit_album.html')
+
+
