@@ -1,3 +1,4 @@
+import profile
 from django.shortcuts import render
 from .models import Album, Photos
 from django.contrib.auth.decorators import login_required
@@ -14,28 +15,43 @@ def album_view(request, u_name):
         'album_list': album_list,
     }) 
 
+
 @login_required
 def add_album_view(request):
 
     if request.method == 'POST':
-        user= request.user.profile
-        album= Album()
-        album.album_name = request.POST['album_name']
-        album.album_client = request.POST['client_name']
-        album.cover_photo = request.POST['picture']
-        album.user = user
-        album.thumbnail_image()
-        album.save()
+        form = AlbumForm(request.POST, request.FILES)
 
-    return render(request, 'posts/new_album.html', {
-         
-    })
+        if form.is_valid():
+            user= request.user.profile
+            
+            data = form.cleaned_data
+            album = Album()
+            album.user = user
+            album.album_name = data['album_name']
+            album.album_client = data['album_client']
+            album.cover_photo = data['cover_photo']
+            album.save()
+
+    else:
+        form = AlbumForm()
+
+    return render(
+        request= request, 
+        template_name = 'posts/new_album.html', 
+        context = {
+            'profile': request.user.profile,
+            'user': request.user,
+            'form': form,
+        })
 
 
-# def add_album(request):
-#     if request.method == 'POST':
-#         a_name = request.POST['a_name']
-#         a_client = request.POST['a_client']
-#         a_cover_photo = request.POST['a_cover_photo']
-#         album = Album.objects.create_album(album)
 
+ # user= request.user.profile
+        # album= Album()
+        # album.album_name = request.POST['album_name']
+        # album.album_client = request.POST['client_name']
+        # album.cover_photo = request.POST['picture']
+        # album.user = user
+        # # album.thumbnail_image = request.POST['']
+        # album.save()
