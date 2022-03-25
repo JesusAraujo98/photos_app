@@ -1,15 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>añadir album</title>
+  <meta charset="utf-8">
+  <title>gallery</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'posts/css/style.css' %}">
+
 </head>
+
 <body>
-    <form action=""></form>
+  <div class="main">
+    <h1>Responsive Card Grid Layout</h1>
+    <ul class="cards">
+      <li class="cards_item">
+          <form action="{% url 'posts:add_album' %}" method="POST">
+              {% csrf_token %}
+        <div class="card">
+          <div class="card_image"><img src="{% static 'posts/img/392-500x300.jpg' url %}"><input type="file" name="picture" placeholder="portada del album"></div>
+          <div class="card_content">
+            <h2 class="card_title"><input name="album_name" type="text" placeholder="Titulo del Album"></h2>
+            <p class="card_text"><input name="client_name" type="text" placeholder="Nombre del Cliente"></p>
+            <p class="card_text"></p>
+            <button class="btn card_btn" action="submit" >nuevo album</button>
+          </div>
+        </div>
+        </form>
+      </li>
+     
 
+    </ul>
+  </div>
+  
 
-    
 </body>
+
 </html>
