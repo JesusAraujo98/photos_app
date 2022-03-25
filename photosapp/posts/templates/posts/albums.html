@@ -21,7 +21,7 @@
     <h1>Responsive Card Grid Layout</h1>
     <ul class="cards">
       <li class="cards_item">
-        <form action="{% url 'posts:add_album' %}" a>
+        <form action="{% url 'posts:add_album' %}" name="form_add_album" >
         <div class="card">
           <div class="card_image"><img src="{% static 'posts/img/392-500x300.jpg' url %}"></div>
           <div class="card_content">
@@ -38,12 +38,14 @@
       {% for album in album_list %}
       <li class="cards_item">
         <form action="{% url 'posts:photos' %}" method="POST">
+          {% csrf_token %}
         <div class="card">
           <div class="card_image"><img src="{{album.thumbnail_image.url}}"></div>
           <div class="card_content">
             <h2 class="card_title">{{ album.album_client }}</h2>
             <p class="card_text">{{ album.album_name }}</p>
             <p class="card_text">{{ album.created_at }}</p>
+            <input hidden type="text" name="selected_album" value="{{ album.id }}">
             <button class="btn card_btn" action="submit">ver</button>
           </div>
         </div>
@@ -57,4 +59,4 @@
 
 </body>
 
-</html>
+</html> 

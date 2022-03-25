@@ -65,3 +65,4 @@ def logout_view(request):
 
 def index_view(request):
     return redirect('users:login')
+ 

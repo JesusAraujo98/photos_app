@@ -1,30 +1,41 @@
 import profile
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Album, Photos
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import AlbumForm
+from django.urls import reverse
 
 
 # Create your views here.
+
+@login_required
+def photos_view(request):
+    if request.method == 'POST':
+        seleccion = request.POST['selected_album']
+        photos_list = Photos.objects.filter(album=seleccion)
+        return render(request, 'posts/photos.html', {
+        'photos_list':photos_list
+        })
+    print('hola')
+    
+
 @login_required
 def album_view(request, u_name):
     profile = request.user.profile
     album_list = Album.objects.filter(user=profile)
     return render(request, 'posts/albums.html', {
         'album_list': album_list,
+        'u_name': u_name,
     }) 
 
 
 @login_required
 def add_album_view(request):
-
     if request.method == 'POST':
         form = AlbumForm(request.POST, request.FILES)
-
         if form.is_valid():
             user= request.user.profile
-            
             data = form.cleaned_data
             album = Album()
             album.user = user
@@ -32,10 +43,9 @@ def add_album_view(request):
             album.album_client = data['album_client']
             album.cover_photo = data['cover_photo']
             album.save()
-
+            return redirect(reverse('posts:album', args=(user,)))
     else:
         form = AlbumForm()
-
     return render(
         request= request, 
         template_name = 'posts/new_album.html', 
@@ -46,14 +56,5 @@ def add_album_view(request):
         })
 
 
-def edit_album_view(request, album_name ):
-
-    if request.method == 'POST':
-        user = request.user
-        
-        
-
-
-    return render(request, 'posts/edit_album.html')
 
 
