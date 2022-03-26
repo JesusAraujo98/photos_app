@@ -13,17 +13,24 @@ from django.urls import reverse
 def photos_view(request):
     if request.method == 'POST':
         seleccion = request.POST['selected_album']
-        photos_list = Photos.objects.filter(album=seleccion)
-        return render(request, 'posts/photos.html', {
-        'photos_list':photos_list
-        })
-    print('hola')
+
+        album_state = Album.objects.get(pk=seleccion)
+        if album_state.is_active == True:
+            photos_list = Photos.objects.filter(album=seleccion)
+            return render(request, 'posts/photos.html', {
+            'photos_list':photos_list
+            })
+        else:
+
+            print('inactive_album')
+    print('*******')
     
 
 @login_required
 def album_view(request, u_name):
     profile = request.user.profile
     album_list = Album.objects.filter(user=profile)
+    
     return render(request, 'posts/albums.html', {
         'album_list': album_list,
         'u_name': u_name,

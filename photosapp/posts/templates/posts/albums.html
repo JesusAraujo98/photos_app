@@ -45,8 +45,16 @@
             <h2 class="card_title">{{ album.album_client }}</h2>
             <p class="card_text">{{ album.album_name }}</p>
             <p class="card_text">{{ album.created_at }}</p>
+            
+           
+              
             <input hidden type="text" name="selected_album" value="{{ album.id }}">
+            
+            {% if album.is_active == True %}
             <button class="btn card_btn" action="submit">ver</button>
+            {% else %}
+            <button class="btn card_btn"  disabled>Album no activo</button>
+            {% endif %}
           </div>
         </div>
         </form>
