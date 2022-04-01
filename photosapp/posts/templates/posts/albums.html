@@ -8,8 +8,6 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
 
-
-
     {% load static %}
 
     <link rel="stylesheet" href="{% static 'posts/css/style.css' %}">
@@ -18,7 +16,8 @@
 
 <body>
   <div class="main">
-    <h1>Responsive Card Grid Layout</h1>
+    <a href="{% url 'users:profile' %}"  style="text-decoration:none"><h1>Mi Usuario</h1></a>
+ 
     <ul class="cards">
       <li class="cards_item">
         <form action="{% url 'posts:add_album' %}" name="form_add_album" >
@@ -46,12 +45,11 @@
             <p class="card_text">{{ album.album_name }}</p>
             <p class="card_text">{{ album.created_at }}</p>
             
-           
-              
             <input hidden type="text" name="selected_album" value="{{ album.id }}">
             
             {% if album.is_active == True %}
             <button class="btn card_btn" action="submit">ver</button>
+            
             {% else %}
             <button class="btn card_btn"  disabled>Album no activo</button>
             {% endif %}

@@ -9,6 +9,12 @@ from users.forms import ProfileForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+@login_required
+def my_profile_view(request):
+    return render(request, 'users/user.html')
+
+
 def login_view(request):
     """Login view"""
     if request.method == 'POST':

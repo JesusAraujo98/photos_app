@@ -9,6 +9,26 @@ from django.urls import reverse
 
 # Create your views here.
 
+def update_album_view(request):
+    if request.method == 'POST':
+        album_id = request.POST['album_id']
+        album = Album.objects.get(pk=album_id)
+        name_album = request.POST['album_name']
+        client_album = request.POST['album_client']
+        cover_album = request.POST['album_cover']
+        
+        photos_album = request.FILES.getlist('photos')
+        user= request.user.profile
+
+        for photo in photos_album:
+            new_photo = Photos()
+            new_photo.album = album
+            new_photo.image=photo
+            new_photo.save()
+
+        return redirect(reverse('posts:album', args=(user,)))
+       
+
 @login_required
 def photos_view(request):
     if request.method == 'POST':
@@ -18,11 +38,14 @@ def photos_view(request):
         if album_state.is_active == True:
             photos_list = Photos.objects.filter(album=seleccion)
             return render(request, 'posts/photos.html', {
-            'photos_list':photos_list
+            'photos_list':photos_list,
+            'album_id':seleccion
             })
         else:
-
-            print('inactive_album')
+            return render(request, 'posts/album.html', {
+            'photos_list':photos_list
+            })
+            # print('inactive_album')
     print('*******')
     
 
