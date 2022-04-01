@@ -3,25 +3,36 @@
 
 <head>
   <meta charset="utf-8">
-  <title>gallery</title>
+
+  {% block title %}
+  
+  {% endblock  %}
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
 
+    <script src="https://kit.fontawesome.com/b209ce3f9a.js" crossorigin="anonymous"></script>
+
     {% load static %}
 
     <link rel="stylesheet" href="{% static 'posts/css/style.css' %}">
+    <script defer src="{% static 'posts/js/navbar.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'posts/css/navbar.css' %}">
 
 
 </head>
 
 <body>
+  {% include "./navbar.html" %}
+  <br>
+  <br>
 
-    {% block container %}
+    {% block content %}
 
-    
+
     {% endblock %}
 
     
 </body>
+</html>
 

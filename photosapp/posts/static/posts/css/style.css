@@ -9,7 +9,8 @@
 }
 
 html {
-  background-color: #ecf9ff;
+  background-color: #ecf9ff
+  /* background-color: rgb(41, 41, 41); */
 }
 
 body {
@@ -24,6 +25,7 @@ body {
 .main{
   max-width: 1200px;
   margin: 0 auto;
+  /* color:#272727; */
 }
 
 h1 {

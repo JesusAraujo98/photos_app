@@ -1,68 +1,58 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-  <meta charset="utf-8">
-  <title>gallery</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-
+{% extends './base.html' %}
+{% block title %}<title>Gallery</title>{% endblock  %}
+{% block content %}
     {% load static %}
-
-    <link rel="stylesheet" href="{% static 'posts/css/style.css' %}">
-
-</head>
-
-<body>
-  <div class="main">
-    <a href="{% url 'users:profile' %}"  style="text-decoration:none"><h1>Mi Usuario</h1></a>
- 
-    <ul class="cards">
-      <li class="cards_item">
-        <form action="{% url 'posts:add_album' %}" name="form_add_album" >
-        <div class="card">
-          <div class="card_image"><img src="{% static 'posts/img/392-500x300.jpg' url %}"></div>
-          <div class="card_content">
-            <h2 class="card_title">+-+-+- </h2>
-            <p class="card_text"> +-+-+-</p>
-            <p class="card_text">+-+-+- </p>
-            <button class="btn card_btn" action="submit">Nuevo</button>
-          </form>
-          </div>
+    <body>
+        <div class="main">
+           
+            <ul class="cards">
+                <li class="cards_item">
+                    <form action="{% url 'posts:add_album' %}" name="form_add_album">
+                        <div class="card">
+                            <div class="card_image">
+                                <img src="{% static 'posts/img/392-500x300.jpg' url %}">
+                            </div>
+                            <div class="card_content">
+                                <h2 class="card_title">+-+-+-</h2>
+                                <p class="card_text">
+                                    +-+-+-
+                                </p>
+                                <p class="card_text">
+                                    +-+-+-
+                                </p>
+                                <button class="btn card_btn" action="submit">Nuevo</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                {% for album in album_list %}
+                    <li class="cards_item">
+                        <form action="{% url 'posts:photos' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="card">
+                                <div class="card_image">
+                                    <img src="{{ album.thumbnail_image.url }}">
+                                </div>
+                                <div class="card_content">
+                                    <h2 class="card_title">
+                                        Titulo: {{ album.album_name }}</h2>
+                                    <p class="card_text">
+                                        Cliente: {{ album.album_client }}
+                                    </p>
+                                    <p class="card_text">
+                                        {{ album.created_at }}
+                                    </p>
+                                    <input hidden type="text" name="selected_album" value="{{ album.id }}">
+                                    {% if album.is_active == True %}
+                                        <button class="btn card_btn" action="submit">ver</button>
+                                    {% else %}
+                                        <button class="btn card_btn"  disabled>Album no activo</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
-      </li>
-     
-      
-      {% for album in album_list %}
-      <li class="cards_item">
-        <form action="{% url 'posts:photos' %}" method="POST">
-          {% csrf_token %}
-        <div class="card">
-          <div class="card_image"><img src="{{album.thumbnail_image.url}}"></div>
-          <div class="card_content">
-            <h2 class="card_title">{{ album.album_client }}</h2>
-            <p class="card_text">{{ album.album_name }}</p>
-            <p class="card_text">{{ album.created_at }}</p>
-            
-            <input hidden type="text" name="selected_album" value="{{ album.id }}">
-            
-            {% if album.is_active == True %}
-            <button class="btn card_btn" action="submit">ver</button>
-            
-            {% else %}
-            <button class="btn card_btn"  disabled>Album no activo</button>
-            {% endif %}
-          </div>
-        </div>
-        </form>
-      </li>
-      {% endfor %}
-
-    </ul>
-  </div>
-  
-
-</body>
-
-</html> 
+    {% endblock  %}
