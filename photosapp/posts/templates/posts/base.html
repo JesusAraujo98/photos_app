@@ -15,19 +15,29 @@
 
     {% load static %}
 
-    <link rel="stylesheet" href="{% static 'posts/css/style.css' %}">
+    
     <script defer src="{% static 'posts/js/navbar.js'%}"></script>
     <link rel="stylesheet" href="{% static 'posts/css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'posts/css/style.css' %}"> 
+    
 
 
 </head>
 
 <body>
-  {% include "./navbar.html" %}
-  <br>
-  <br>
+
+    {% include "./navbar.html" %}
+
+
+
+ 
+  <br><br><br><br>
+  
+ 
+  
 
     {% block content %}
+    
 
 
     {% endblock %}
