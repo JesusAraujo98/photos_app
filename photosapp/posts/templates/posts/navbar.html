@@ -1,17 +1,22 @@
-
-    <header class ="header">
-        <nav class= "nav">
-            <a href="#" class="logo nav-link">logo</a>
-
-            <button class="nav-toggle" aria-label="Abrir menu">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul class="nav-menu">
-                <li class= "nav-menu-item"><a href="#" class="nav-menu-link nav-link"> inicio</a></li>
-                <li class= "nav-menu-item"><a href="#" class="nav-menu-link nav-link"> folders</a></li>
-                <li class= "nav-menu-item"><a href="#" class="nav-menu-link nav-link"> formas de pago</a></li>
-                <li class= "nav-menu-item"><a href="#" class="nav-menu-link nav-link"> logout</a></li>
-               
-            </ul>
-        </nav>
-    </header>
+<header class ="header">
+    <nav class= "nav">
+        <a href="#" class="logo nav-link">logo</a>
+        <button class="nav-toggle" aria-label="Abrir menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu">
+            <li class= "nav-menu-item">
+                <a href="#" class="nav-menu-link nav-link">inicio</a>
+            </li>
+            <li class= "nav-menu-item">
+                <a href="#" class="nav-menu-link nav-link">folders</a>
+            </li>
+            <li class= "nav-menu-item">
+                <a href="#" class="nav-menu-link nav-link">formas de pago</a>
+            </li>
+            <li class= "nav-menu-item">
+                <a href="{% url 'users:logout' %}" class="nav-menu-link nav-link">logout</a>
+            </li>
+        </ul>
+    </nav>
+</header>

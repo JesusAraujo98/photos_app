@@ -1,60 +1,55 @@
 {% extends './base.html' %}
 {% block title %}<title>Gallery</title>{% endblock  %}
+{% load static %}
 {% block content %}
-    {% load static %}
-    <body>
-        
-        <div class="main">
-            
-           
-            <ul class="cards">
-                <li class="cards_item">
+    <div class="main">
+        <ul class="cards">
+            <li class="cards_item">
+                <div class="card">
                     <form action="{% url 'posts:add_album' %}" name="form_add_album">
-                        <div class="card">
-                            <div class="card_image">
-                                <img src="{% static 'posts/img/392-500x300.jpg' url %}">
-                            </div>
-                            <div class="card_content">
-                                <h2 class="card_title">+-+-+-</h2>
-                                <p class="card_text">
-                                    +-+-+-
-                                </p>
-                                <p class="card_text">
-                                    +-+-+-
-                                </p>
-                                <button class="btn card_btn" action="submit">Nuevo</button>
-                            </form>
+                        <div class="card_image">
+                            <img src="{% static 'posts/img/392-500x300.jpg' url %}">
                         </div>
-                    </div>
-                </li>
-                {% for album in album_list %}
-                    <li class="cards_item">
+                        <div class="card_content">
+                            <h2 class="card_title">+-+-+-</h2>
+                            <p class="card_text">
+                                +-+-+-
+                            </p>
+                            <p class="card_text">
+                                +-+-+-
+                            </p>
+                            <button class="btn card_btn" action="submit">Nuevo</button>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            {% for album in album_list %}
+                <li class="cards_item">
+                    <div class="card">
                         <form action="{% url 'posts:photos' %}" method="POST">
                             {% csrf_token %}
-                            <div class="card">
-                                <div class="card_image">
-                                    <img src="{{ album.thumbnail_image.url }}">
-                                </div>
-                                <div class="card_content">
-                                    <h2 class="card_title">
-                                        Titulo: {{ album.album_name }}</h2>
-                                    <p class="card_text">
-                                        Cliente: {{ album.album_client }}
-                                    </p>
-                                    <p class="card_text">
-                                        {{ album.created_at }}
-                                    </p>
-                                    <input hidden type="text" name="selected_album" value="{{ album.id }}">
-                                    {% if album.is_active == True %}
-                                        <button class="btn card_btn" action="submit">ver</button>
-                                    {% else %}
-                                        <button class="btn card_btn"  disabled>Album no activo</button>
-                                    {% endif %}
-                                </div>
+                            <div class="card_image">
+                                <img src="{{ album.thumbnail_image.url }}">
+                            </div>
+                            <div class="card_content">
+                                <h2 class="card_title">Titulo: {{ album.album_name }}</h2>
+                                <p class="card_text">
+                                    Cliente: {{ album.album_client }}
+                                </p>
+                                <p class="card_text">
+                                    {{ album.created_at }}
+                                </p>
+                                <input hidden type="text" name="selected_album" value="{{ album.id }}">
+                                {% if album.is_active == True %}
+                                    <button class="btn card_btn" action="submit">ver</button>
+                                {% else %}
+                                    <button class="btn card_btn"  disabled>Album no activo</button>
+                                {% endif %}
                             </div>
                         </form>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endblock  %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock  %}

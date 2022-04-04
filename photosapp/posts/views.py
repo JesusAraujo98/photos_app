@@ -1,8 +1,8 @@
-import profile
+# import profile
 from django.shortcuts import redirect, render
 from .models import Album, Photos
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
+# from django.http import HttpResponse, HttpResponseRedirect
 from .forms import AlbumForm
 from django.urls import reverse
 
@@ -45,7 +45,6 @@ def photos_view(request):
             return render(request, 'posts/album.html', {
             'photos_list':photos_list
             })
-            # print('inactive_album')
     print('*******')
     
 
