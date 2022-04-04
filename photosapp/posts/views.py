@@ -59,6 +59,7 @@ def album_view(request, u_name):
     }) 
 
 
+
 @login_required
 def add_album_view(request):
     if request.method == 'POST':

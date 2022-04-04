@@ -1,48 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'posts/css/photos.css' %}">
-    <title>Photo Gallery</title>
-</head>
-<body>
+{% extends './base.html' %}
+{% block title %}<title>Photos</title>{% endblock  %}
+{% load static %}
+{% block content %}
     <div class="container">
-        <header><h1>Gallery</h1></header>
-
-        <form action="{% url 'posts:update' %}" method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-
-          <input type="text" name="album_name"/>
-          <input type="text" name="album_client"/>
-          <input type="file" name="album_cover"/>
-
-          <input type="file" name="photos" multiple/>
-          <input hidden type="text" name="album_id" value="{{ album_id }}"/>
-          <button action="submit">Actualizar</button>
-        </form>
-
-        <main class="gallery">
-          
-
-        {% for photo in photos_list %}
-        
-          <figure>
-            <a href="{{ photo.image.url }}" target="_blank" class="btn" download="IMG.JPG">
-                <img src="{{ photo.thumbnail_photo.url }}" alt="unsplash image" />
-            </a>
-          </figure>
-          {% endfor %}
-       
-          
-        </main>
-        
-      </div>
     
-</body>
-</html>
-
-
-
+        <form action="{% url 'posts:update' %}"
+              method="POST"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="album_name"/>
+            <input type="text" name="album_client"/>
+            <input type="file" name="album_cover"/>
+            <input type="file" name="photos" multiple/>
+            <input hidden type="text" name="album_id" value="{{ album_id }}"/>
+            <button action="submit">Actualizar</button>
+        </form>
+        <main class="gallery">
+            {% for photo in photos_list %}
+                <figure>
+                    <a href="{{ photo.image.url }}"
+                       target="_blank"
+                       class="btn"
+                       download="IMG.JPG">
+                        <img src="{{ photo.thumbnail_photo.url }}" alt="unsplash image" />
+                    </a>
+                </figure>
+            {% endfor %}
+        </main>
+    </div>
+{% endblock  %}
