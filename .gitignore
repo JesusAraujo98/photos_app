@@ -1,1 +1,6 @@
 venv/
+photosapp/media/
+photosapp/db.sqlite3
+
+
+

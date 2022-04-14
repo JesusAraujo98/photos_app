@@ -9,6 +9,19 @@ from django.urls import reverse
 
 # Create your views here.
 
+
+# def folders_view(request):
+#     if request.method == 'POST':
+#         user = request.user.profile
+        
+@login_required
+def folders_view(request):
+    user = request.user
+    album_list = Album.objects.filter(user=user).order_by('-created_at')
+    
+    pass
+
+@login_required
 def update_album_view(request):
     if request.method == 'POST':
         album_id = request.POST['album_id']
@@ -18,7 +31,7 @@ def update_album_view(request):
         cover_album = request.POST['album_cover']
         
         photos_album = request.FILES.getlist('photos')
-        user= request.user.profile
+        user= request.user
 
         for photo in photos_album:
             new_photo = Photos()
@@ -26,7 +39,7 @@ def update_album_view(request):
             new_photo.image=photo
             new_photo.save()
 
-        return redirect(reverse('posts:album', args=(user,)))
+        return redirect(reverse('posts:album', ))
        
 
 @login_required
@@ -49,15 +62,21 @@ def photos_view(request):
     
 
 @login_required
-def album_view(request, u_name):
-    profile = request.user.profile
-    album_list = Album.objects.filter(user=profile)
+def album_view(request):
+    user = request.user
+    first_list = Album.objects.filter(user=user).order_by('-created_at')
+    album_list = []
+    if len(first_list)>=5:
+        for i in range(0,5):
+            album_list.append(first_list[i])
+    else:
+        album_list=first_list
+        
     
     return render(request, 'posts/albums.html', {
         'album_list': album_list,
-        'u_name': u_name,
+        
     }) 
-
 
 
 @login_required
@@ -65,7 +84,7 @@ def add_album_view(request):
     if request.method == 'POST':
         form = AlbumForm(request.POST, request.FILES)
         if form.is_valid():
-            user= request.user.profile
+            user= request.user
             data = form.cleaned_data
             album = Album()
             album.user = user
@@ -73,14 +92,14 @@ def add_album_view(request):
             album.album_client = data['album_client']
             album.cover_photo = data['cover_photo']
             album.save()
-            return redirect(reverse('posts:album', args=(user,)))
+            return redirect(reverse('posts:album', ))
     else:
         form = AlbumForm()
     return render(
         request= request, 
         template_name = 'posts/new_album.html', 
         context = {
-            'profile': request.user.profile,
+            'profile': request.user,
             'user': request.user,
             'form': form,
         })

@@ -3,7 +3,7 @@ from secrets import choice
 from turtle import back
 from django.db import models
 
-from users.models import Profile
+from users.models import Profile, User
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
@@ -12,7 +12,7 @@ from imagekit.processors import ResizeToFill
 
 
 class Album(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     album_client = models.CharField(max_length=200 , blank=True)
     album_name= models.CharField(max_length=100)
     is_active=models.BooleanField(default=True)

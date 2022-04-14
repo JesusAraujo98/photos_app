@@ -29,7 +29,7 @@ def login_view(request):
                 login(request, user)
 
                 # return redirect('posts:albums')
-                return redirect(reverse('posts:album', args=(u_name,)))
+                return redirect(reverse('posts:album', ))
             else:
                 return render(request, 'users/login.html', {'error': 'invalid username and/or password'})
 
