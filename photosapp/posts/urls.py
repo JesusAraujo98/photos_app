@@ -11,5 +11,6 @@ urlpatterns = [
     path('new_album/', views.add_album_view, name='add_album'),
     path('photos/', views.photos_view, name='photos'),
     path('update/', views.update_album_view, name='update'),
+    path('albums/', views.folders_view, name='folders'),
 
 ]

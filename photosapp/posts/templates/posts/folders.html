@@ -1,0 +1,21 @@
+{% extends './base.html' %}
+{% block title %}<title>my albums</title>{% endblock  %}
+{% load static %}
+{% block content %}
+<ul>
+
+        {% for album in album_list %}
+        <li>
+            <ul>
+                
+                <li><h2>{{ album.album_name }}</h2></li>
+                <li><p>{{ album.album_client }}</p></li>
+                <li><p>{{ album.created_at }}</p></li>
+            </ul>
+            
+        </li>
+
+        {% endfor %}
+</ul>
+
+{% endblock %}

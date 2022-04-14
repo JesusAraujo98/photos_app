@@ -18,17 +18,19 @@ from django.urls import reverse
 def folders_view(request):
     user = request.user
     album_list = Album.objects.filter(user=user).order_by('-created_at')
+    return render(request, 'posts/folders.html', {
+        'album_list':album_list,
+        })
     
-    pass
 
 @login_required
 def update_album_view(request):
     if request.method == 'POST':
         album_id = request.POST['album_id']
         album = Album.objects.get(pk=album_id)
-        name_album = request.POST['album_name']
-        client_album = request.POST['album_client']
-        cover_album = request.POST['album_cover']
+        # name_album = request.POST['album_name']
+        # client_album = request.POST['album_client']
+        # cover_album = request.POST['album_cover']
         
         photos_album = request.FILES.getlist('photos')
         user= request.user
@@ -55,7 +57,7 @@ def photos_view(request):
             'album_id':seleccion
             })
         else:
-            return render(request, 'posts/album.html', {
+            return render(request, 'posts/albums.html', {
             'photos_list':photos_list
             })
     print('*******')
@@ -71,8 +73,7 @@ def album_view(request):
             album_list.append(first_list[i])
     else:
         album_list=first_list
-        
-    
+
     return render(request, 'posts/albums.html', {
         'album_list': album_list,
         
