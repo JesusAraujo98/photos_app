@@ -51,7 +51,6 @@ def login_view(request):
                 user = User.objects.create_user(username= s_name, password = s_password)
                 user.email = s_email
                 user.save()
-                
                 profile = Profile(user = user)
                 profile.email = s_email
                 profile.save()

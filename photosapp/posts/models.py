@@ -24,6 +24,8 @@ class Album(models.Model):
         processors=[ResizeToFill(500, 300)],
         format = 'JPEG',
         options={'quality': 60})
+    
+    
 
     """ Choices part """
 

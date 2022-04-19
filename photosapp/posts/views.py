@@ -67,6 +67,7 @@ def photos_view(request):
 def album_view(request):
     user = request.user
     first_list = Album.objects.filter(user=user).order_by('-created_at')
+    
     album_list = []
     if len(first_list)>=5:
         for i in range(0,5):
@@ -75,8 +76,7 @@ def album_view(request):
         album_list=first_list
 
     return render(request, 'posts/albums.html', {
-        'album_list': album_list,
-        
+        'album_list': album_list,        
     }) 
 
 
