@@ -1,6 +1,6 @@
 venv/
 photosapp/media/
-*.sqlite3
+photosapp/*.sqlite3
 
 
 
