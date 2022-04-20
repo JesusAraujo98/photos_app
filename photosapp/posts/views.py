@@ -10,12 +10,6 @@ from django.urls import reverse
 # Create your views here.
 
 
-# def folders_view(request):
-#     if request.method == 'POST':
-#         user = request.user.profile
-
-
-
 @login_required
 def folders_view(request):
     user = request.user
