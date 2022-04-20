@@ -13,15 +13,49 @@ from django.urls import reverse
 # def folders_view(request):
 #     if request.method == 'POST':
 #         user = request.user.profile
-        
+
+
+
 @login_required
 def folders_view(request):
     user = request.user
+    valor = 'plus'
+
+    if request.method=='POST':
+        filter = request.POST['filter']
+        valor = request.POST['valor']
+        
+        if valor == 'plus':
+            if filter == 'album':
+                album_list = Album.objects.filter(user=user).order_by('album_name')
+            elif filter =='client':
+                album_list = Album.objects.filter(user=user).order_by('album_client')
+            elif filter =='created':
+                album_list = Album.objects.filter(user=user).order_by('created_at')
+            valor='minus'
+
+        else:
+            if filter == 'album':
+                album_list = Album.objects.filter(user=user).order_by('-album_name')
+            elif filter =='client':
+                album_list = Album.objects.filter(user=user).order_by('-album_client')
+            elif filter =='created':
+                album_list = Album.objects.filter(user=user).order_by('-created_at')
+            valor='plus'
+
+        print(valor)
+        return render(request, 'posts/folders.html', {
+            'album_list':album_list,
+            'valor':valor
+            })
+        
+    
     album_list = Album.objects.filter(user=user).order_by('-created_at')
     return render(request, 'posts/folders.html', {
         'album_list':album_list,
+        'valor':valor
         })
-    
+
 
 @login_required
 def update_album_view(request):
@@ -47,19 +81,25 @@ def update_album_view(request):
 @login_required
 def photos_view(request):
     if request.method == 'POST':
-        seleccion = request.POST['selected_album']
 
-        album_state = Album.objects.get(pk=seleccion)
-        if album_state.is_active == True:
-            photos_list = Photos.objects.filter(album=seleccion)
-            return render(request, 'posts/photos.html', {
-            'photos_list':photos_list,
-            'album_id':seleccion
-            })
+        seleccion = request.POST['selected_album']
+        album = Album.objects.get(pk=seleccion)
+
+        user_album = album.user
+        user = request.user
+        if user == user_album:
+            if album.is_active == True:
+                photos_list = Photos.objects.filter(album=seleccion)
+                return render(request, 'posts/photos.html', {
+                'photos_list':photos_list,
+                'album_id':seleccion
+                })
+            else:
+                return render(request, 'posts/albums.html', {
+                'photos_list':photos_list
+                })
         else:
-            return render(request, 'posts/albums.html', {
-            'photos_list':photos_list
-            })
+            return redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
     print('*******')
     
 
@@ -104,7 +144,3 @@ def add_album_view(request):
             'user': request.user,
             'form': form,
         })
-
-
-
-
