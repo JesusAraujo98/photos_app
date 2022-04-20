@@ -60,14 +60,18 @@ def update_album_view(request):
         # client_album = request.POST['album_client']
         # cover_album = request.POST['album_cover']
         
-        photos_album = request.FILES.getlist('photos')
         user= request.user
+        user_album = album.user
 
-        for photo in photos_album:
-            new_photo = Photos()
-            new_photo.album = album
-            new_photo.image=photo
-            new_photo.save()
+        if user == user_album:
+            photos_album = request.FILES.getlist('photos')
+            for photo in photos_album:
+                new_photo = Photos()
+                new_photo.album = album
+                new_photo.image=photo
+                new_photo.save()
+        else:
+            pass
 
         return redirect(reverse('posts:album', ))
        

@@ -1,7 +1,8 @@
+from http import client
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
-from .models import Profile
+from .models import Profile, Client
 from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
 from users.forms import ProfileForm
@@ -9,6 +10,15 @@ from users.forms import ProfileForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+@login_required
+def clients_views(request):
+    user = request.user
+    clients = Client.objects.filter(pk=user)
+    
+    
+
+
 
 @login_required
 def my_profile_view(request):

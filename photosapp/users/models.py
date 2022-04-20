@@ -18,3 +18,8 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
     
+class Client(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE )
+    client_name = models.CharField(max_length=50, blank=False)
+    password = models.CharField(max_length=50, blank=False)
+

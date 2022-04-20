@@ -18,12 +18,15 @@
         <main class="gallery">
             {% for photo in photos_list %}
                 <figure>
+                
                     <a href="{{ photo.image.url }}"
                        target="_blank"
                        class="btn"
                        download="IMG.JPG">
                         <img src="{{ photo.thumbnail_photo.url }}" alt="unsplash image" />
                     </a>
+                    
+                    
                 </figure>
             {% endfor %}
         </main>

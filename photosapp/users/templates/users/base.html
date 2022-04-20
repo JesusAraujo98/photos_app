@@ -1,18 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <meta charset="utf-8">
+
+  {% block title %}
+  
+  {% endblock  %}
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+    <script src="https://kit.fontawesome.com/b209ce3f9a.js" crossorigin="anonymous"></script>
+
     {% load static %}
-    <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+
+    
+    <script defer src="{% static 'users/js/navbar.js'%}"></script>
+    
+    <link rel="stylesheet" href="{% static 'users/css/navbar.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'posts/css/style.css' %}">  {% endcomment %}
+
 
 </head>
+
 <body>
-    {% block container %}
-    {% endblock  %}
+
+    {% include "./navbar.html" %}
+
+
+
+ 
+  <br><br><br><br>
+  
+ 
+  
+
+    {% block content %}
+    
+
+
+    {% endblock %}
+
     
 </body>
 </html>
+
