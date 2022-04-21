@@ -3,7 +3,7 @@ from secrets import choice
 from turtle import back
 from django.db import models
 
-from users.models import Profile, User
+from users.models import Profile, User, Client
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
@@ -24,33 +24,6 @@ class Album(models.Model):
         processors=[ResizeToFill(500, 300)],
         format = 'JPEG',
         options={'quality': 60})
-    
-    
-
-    """ Choices part """
-
-    # CHOICES_color = [
-    #     ('coffe', 'coffe'),
-    #     ('black', 'black'),
-    #     ('white', 'white'),
-    #     ('gray' (
-    #         ('gray', '25-75'),
-    #         ('gray', '50-50'),
-    #         ('gray', '75-20'),
-    #     ))
-    #     ]
-    # CHOICES_grid = [
-    #     ('mosaico','mosaico'),
-    #     ('cuadrados','cuadrados')
-    #     ('album','album')
-    # ]
-    
-    
-    # background_color = models.Choices(choices = CHOICES_color)
-    # grid = models.Choices(choices = CHOICES_grid)
-
-    
-
 
 
 class Photos(models.Model):

@@ -43,7 +43,6 @@ def folders_view(request):
             'valor':valor
             })
         
-    
     album_list = Album.objects.filter(user=user).order_by('-created_at')
     return render(request, 'posts/folders.html', {
         'album_list':album_list,

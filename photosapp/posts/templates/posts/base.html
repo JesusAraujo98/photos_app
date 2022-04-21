@@ -1,51 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-  <meta charset="utf-8">
-
-  {% block title %}
-  
-  {% endblock  %}
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-
-    <script src="https://kit.fontawesome.com/b209ce3f9a.js" crossorigin="anonymous"></script>
-
-    {% load static %}
-
-    
-    <script defer src="{% static 'posts/js/navbar.js'%}"></script>
-    
-    <link rel="stylesheet" href="{% static 'posts/css/navbar.css' %}">
-    <link rel="stylesheet" href="{% static 'posts/css/new.css' %}">
-    <link rel="stylesheet" href="{% static 'posts/css/folders.css' %}">
-    {% comment %} <link rel="stylesheet" href="{% static 'posts/css/style.css' %}">  {% endcomment %}
-    
-
-
-</head>
-
-<body>
-
-    {% include "./navbar.html" %}
-
-
-
- 
-  <br><br><br><br>
-  
- 
-  
-
-    {% block content %}
-    
-
-
-    {% endblock %}
-
-    
-</body>
+    <head>
+        <meta charset="utf-8">
+        {% block title %}{% endblock  %}
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+        <script src="https://kit.fontawesome.com/b209ce3f9a.js" crossorigin="anonymous"></script>
+        {% load static %}
+        <script defer src="{% static 'posts/js/navbar.js'%}"></script>
+        <link rel="stylesheet" href="{% static 'posts/css/navbar.css' %}">
+        <link rel="stylesheet" href="{% static 'posts/css/new.css' %}">
+        <link rel="stylesheet" href="{% static 'posts/css/folders.css' %}">
+        {% comment %} <link rel="stylesheet" href="{% static 'posts/css/style.css' %}">  {% endcomment %}
+    </head>
+    <body>
+        {% include "./navbar.html" %}
+        <br>
+        <br>
+        <br>
+        <br>
+        {% block content %}{% endblock %}
+    </body>
 </html>
-

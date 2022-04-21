@@ -2,66 +2,57 @@
 {% block title %}<title>my albums</title>{% endblock  %}
 {% load static %}
 {% block content %}
-
-
-   <table class="table-fill">
-   <thead>
-   <tr>
-   <th class="text-left">
-      <form action="{% url 'posts:folders' %}" method="POST">
-         {% csrf_token %}
-         <input hidden type="text" name="filter" value="album">
-         <input hidden type="text" name="valor" value={{ valor }}>
-         <button class="btn card_btn" action="submit">Album</button>
-      </form>
-   </th>
-   <th class="text-left">
-      <form action="{% url 'posts:folders' %}" method="POST">
-         {% csrf_token %}
-         <input hidden type="text" name="filter" value="client">
-         <input hidden type="text" name="valor" value="{{ valor }}">
-         <button class="btn card_btn" action="submit">Client</button>
-      </form>
-   </th>
-   <th class="text-left">
-      <form action="{% url 'posts:folders' %}" method="POST">
-         {% csrf_token %}
-         <input hidden type="text" name="filter" value="created">
-         <input hidden type="text" name="valor" value="{{ valor }}">
-         <button class="btn card_btn" action="submit">Created</button>
-      </form>
-   </th>
-   <th class="text-left">is active
-      </form>
-   </th>
-   <th class="text-left">action</th>
-   </tr>
-   </thead>
-   <tbody class="table-hover">
- 
-   {% for album in album_list %}
-   <tr>
-   <td class="text-left">{{ album.album_name }}</td>
-   <td class="text-left">{{ album.album_client }}</td>
-   <td class="text-left">{{ album.created_at }}</td>
-   <td class="text-left">{{ album.is_active }}</td>
-   <form action="{% url 'posts:photos' %}" method="POST">
-
-      {% csrf_token %}
-      <input hidden type="text" name="selected_album" value="{{ album.id }}">
-
-      <td class="text-left" style="background-color: gray"><button class="btn card_btn" action="submit">ver</button></td>
-      
-   </form>
-  
-   </tr>
-   {% endfor %}
-
-   </tbody>
-   </table>
-     
-
-   
-
+    <table class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-left">
+                    <form action="{% url 'posts:folders' %}" method="POST">
+                        {% csrf_token %}
+                        <input hidden type="text" name="filter" value="album">
+                        <input hidden type="text" name="valor" value={{ valor }}>
+                        <button class="btn card_btn" action="submit">Album</button>
+                    </form>
+                </th>
+                <th class="text-left">
+                    <form action="{% url 'posts:folders' %}" method="POST">
+                        {% csrf_token %}
+                        <input hidden type="text" name="filter" value="client">
+                        <input hidden type="text" name="valor" value="{{ valor }}">
+                        <button class="btn card_btn" action="submit">Client</button>
+                    </form>
+                </th>
+                <th class="text-left">
+                    <form action="{% url 'posts:folders' %}" method="POST">
+                        {% csrf_token %}
+                        <input hidden type="text" name="filter" value="created">
+                        <input hidden type="text" name="valor" value="{{ valor }}">
+                        <button class="btn card_btn" action="submit">Created</button>
+                    </form>
+                </th>
+                <th class="text-left">
+                    is active
+                </form>
+            </th>
+            <th class="text-left">action</th>
+        </tr>
+    </thead>
+    <tbody class="table-hover">
+        {% for album in album_list %}
+            <tr>
+                <td class="text-left">{{ album.album_name }}</td>
+                <td class="text-left">{{ album.album_client }}</td>
+                <td class="text-left">{{ album.created_at }}</td>
+                <td class="text-left">{{ album.is_active }}</td>
+                <form action="{% url 'posts:photos' %}" method="POST">
+                    {% csrf_token %}
+                    <input hidden type="text" name="selected_album" value="{{ album.id }}">
+                    <td class="text-left" style="background-color: gray">
+                        <button class="btn card_btn" action="submit">ver</button>
+                    </td>
+                </form>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 <!-- /.container -->
 {% endblock %}

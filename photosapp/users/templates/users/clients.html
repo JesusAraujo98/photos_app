@@ -1,6 +1,21 @@
-{% extends './base.html' %}
-{% block title %}<title>clients</title>{% endblock  %}
-{% load static %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clients</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'users/css/bootstrap.min.css' %}" >
+</head>
+<body>
+    <form action="{% url 'users:clients' %}" method="POST">
+        {% csrf_token %}
+        <input class="form-control" type="text" placeholder="Client" aria-label="default input example" name="client_name">
+        <input class="form-control" type="text" placeholder="Password" aria-label="default input example" name="client_password">
+        <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
 
-{% endblock  %}
+    </form>
+    
+</body>
+</html>

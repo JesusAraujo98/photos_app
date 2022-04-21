@@ -12,13 +12,21 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 @login_required
-def clients_views(request):
-    user = request.user
-    clients = Client.objects.filter(pk=user)
-    
-    
+def create_client_view(request):
 
+    if request.method == 'POST':
+        user = request.user
+        client_name = request.POST['client_name']
+        client_password = request.POST['client_password']
 
+        client = Client()
+        client.user = user
+        client.client_name = client_name
+        client.password = client_password
+        client.save()
+        return render(request, 'users/clients.html')
+
+    return render(request, 'users/clients.html')
 
 @login_required
 def my_profile_view(request):
@@ -28,16 +36,12 @@ def my_profile_view(request):
 def login_view(request):
     """Login view"""
     if request.method == 'POST':
-        if request.POST.get("form_type") == 'formTwo':
-            
+        if request.POST.get("form_type") == 'formTwo':            
             u_name = request.POST['username']
             u_password = request.POST['password']
-            x='hola'
-    
             user = authenticate(request, username= u_name, password = u_password)
             if user:
                 login(request, user)
-
                 # return redirect('posts:albums')
                 return redirect(reverse('posts:album', ))
             else:
@@ -65,7 +69,7 @@ def login_view(request):
                 profile.email = s_email
                 profile.save()
                 return redirect('users:login')
-                
+               
             except IntegrityError:
                 return render(request, 'users/login.html', {'error': 'Username is already in use'})
 
